@@ -1,0 +1,21 @@
+name: AdvancedCrates
+main: AdvancedCrates\Main
+version: 2.0.0
+api: 5.0.0
+author: ApexPELegitz
+description: Permanent hologram animated crate system
+
+commands:
+  crates:
+    description: Teleport to crates area
+    permission: advancedcrates.use
+
+  crate:
+    description: Crate management
+    permission: advancedcrates.admin
+
+permissions:
+  advancedcrates.use:
+    default: true
+  advancedcrates.admin:
+    default: op
