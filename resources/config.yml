@@ -1,0 +1,24 @@
+crates-teleport:
+  world: "world"
+  x: 100
+  y: 70
+  z: 100
+
+hologram:
+  enabled: true
+  height: 1.5
+
+messages:
+  no-key-in-hand: "§cYou must hold the correct crate key."
+  no-keys-in-inventory: "§cYou do not have this crate key."
+  crate-created: "§aCrate created successfully."
+  key-given: "§aYou gave {amount} {crate} keys to {player}."
+  received-key: "§aYou received {amount} {crate} keys."
+  reward-broadcast: "§6{player} won {reward} from {crate} crate!"
+
+mining:
+  enabled: true
+  common: 5
+  uncommon: 3
+  epic: 2
+  legendary: 1
