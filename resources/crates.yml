@@ -1,0 +1,62 @@
+crates:
+  common:
+    display-name: "§aCommon Crate"
+    key-name: "§aCommon Key"
+    lore:
+      - "§7Use at a Common Crate"
+    rewards:
+      diamond:
+        item: "minecraft:diamond"
+        amount: 3
+        chance: 70
+      sword:
+        item: "minecraft:diamond_sword"
+        amount: 1
+        chance: 30
+
+  uncommon:
+    display-name: "§eUncommon Crate"
+    key-name: "§eUncommon Key"
+    lore:
+      - "§7Use at an Uncommon Crate"
+    rewards:
+      diamond:
+        item: "minecraft:diamond"
+        amount: 6
+        chance: 60
+      sword:
+        item: "minecraft:diamond_sword"
+        amount: 1
+        chance: 40
+
+  epic:
+    display-name: "§dEpic Crate"
+    key-name: "§dEpic Key"
+    lore:
+      - "§7Use at an Epic Crate"
+    rewards:
+      diamond_block:
+        item: "minecraft:diamond_block"
+        amount: 2
+        chance: 50
+      sword:
+        item: "minecraft:diamond_sword"
+        amount: 1
+        chance: 50
+
+  legendary:
+    display-name: "§6Legendary Crate"
+    key-name: "§6Legendary Key"
+    lore:
+      - "§7Use at a Legendary Crate"
+    rewards:
+      netherite:
+        item: "minecraft:netherite_ingot"
+        amount: 5
+        chance: 40
+      sword:
+        item: "minecraft:diamond_sword"
+        amount: 1
+        chance: 60
+
+placed-crates: {}
