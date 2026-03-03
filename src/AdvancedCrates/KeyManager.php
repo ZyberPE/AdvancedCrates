@@ -8,7 +8,6 @@ use pocketmine\player\Player;
 use pocketmine\block\VanillaBlocks;
 use pocketmine\item\Item;
 use pocketmine\utils\TextFormat as C;
-use pocketmine\nbt\tag\StringTag;
 
 class KeyManager{
 
@@ -19,44 +18,44 @@ class KeyManager{
     }
 
     public function createKey(string $crateName, int $amount = 1): Item{
-        $config = $this->plugin->getConfig();
-        $crates = $config->get("crates");
 
-        if(!isset($crates[$crateName])){
-            throw new \Exception("Crate '$crateName' does not exist in config.");
+        $configData = $this->plugin->getConfig()->getAll();
+
+        if(!isset($configData["crates"][$crateName])){
+            // DO NOT crash server anymore
+            $this->plugin->getLogger()->error("Crate '$crateName' not found in config.");
+            return VanillaBlocks::TORCH()->asItem(); // safe fallback
         }
 
-        $crateData = $crates[$crateName];
+        $crateData = $configData["crates"][$crateName];
 
         $item = VanillaBlocks::TORCH()->asItem();
         $item->setCount($amount);
 
-        // Set name
-        $item->setCustomName(C::colorize($crateData["key-name"]));
+        // Name
+        $item->setCustomName(C::colorize($crateData["key-name"] ?? "Crate Key"));
 
-        // Set lore (YOUR config uses "lore")
+        // Lore
         $lore = [];
-        foreach($crateData["lore"] as $line){
+        foreach(($crateData["lore"] ?? []) as $line){
             $lore[] = C::colorize($line);
         }
         $item->setLore($lore);
 
-        // Add NBT tag to identify key
-        $nbt = $item->getNamedTag();
-        $nbt->setString("crate_key", $crateName);
-        $item->setNamedTag($nbt);
+        // NBT tag
+        $item->getNamedTag()->setString("crate_key", $crateName);
 
         return $item;
     }
 
     public function giveKey(Player $player, string $crateName, int $amount = 1): void{
         $player->getInventory()->addItem(
-            $this->createKey($crateName, $amount)
+            $this->createKey(strtolower($crateName), $amount)
         );
     }
 
     public function isCrateKey(Item $item, string $crateName): bool{
-        return $item->getNamedTag()->getString("crate_key", "") === $crateName;
+        return $item->getNamedTag()->getString("crate_key", "") === strtolower($crateName);
     }
 
     public function consumeKey(Player $player): void{
